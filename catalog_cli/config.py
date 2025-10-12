@@ -28,16 +28,17 @@ class Settings:
 
     @classmethod
     def load(cls) -> "Settings":
-        deepseek_base_url = _env("DEEPSEEK_BASE_URL", cls.deepseek_base_url)
-        deepseek_api_key = _env("DEEPSEEK_API_KEY", None)
-        deepseek_model = _env("DEEPSEEK_MODEL", cls.deepseek_model)
-        timeout = float(_env("TIMEOUT", str(cls.timeout)))
-        rps = float(_env("RPS", str(cls.rps)))
-        concurrency = int(_env("CONCURRENCY", str(cls.concurrency)))
-        output_dir = Path(_env("OUTPUT_DIR", str(cls.output_dir)))
-        artifacts_dir = Path(_env("ARTIFACTS_DIR", str(cls.artifacts_dir)))
-        state_db = Path(_env("STATE_DB", str(cls.state_db)))
-        log_dir = Path(_env("LOG_DIR", str(cls.log_dir)))
+        defaults = cls()
+        deepseek_base_url = _env("DEEPSEEK_BASE_URL", defaults.deepseek_base_url)
+        deepseek_api_key = _env("DEEPSEEK_API_KEY", defaults.deepseek_api_key)
+        deepseek_model = _env("DEEPSEEK_MODEL", defaults.deepseek_model)
+        timeout = float(_env("TIMEOUT", str(defaults.timeout)))
+        rps = float(_env("RPS", str(defaults.rps)))
+        concurrency = int(_env("CONCURRENCY", str(defaults.concurrency)))
+        output_dir = Path(_env("OUTPUT_DIR", str(defaults.output_dir)))
+        artifacts_dir = Path(_env("ARTIFACTS_DIR", str(defaults.artifacts_dir)))
+        state_db = Path(_env("STATE_DB", str(defaults.state_db)))
+        log_dir = Path(_env("LOG_DIR", str(defaults.log_dir)))
 
         settings = cls(
             deepseek_base_url=deepseek_base_url,
